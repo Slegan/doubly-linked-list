@@ -47,18 +47,18 @@ class LinkedList {
           currentNode = currentNode.next;
         }
       }
-      return this;
     }
 
     insertAt(index, data) {
       let currentNode = this._head;
+      let dataArr = [];
       for (var i = 0; i < this.length; i++) {
-        if (i === index) {
-          currentNode.data = data;
-        }else {
-          currentNode = currentNode.next;
-        }
+        dataArr.push(currentNode.data);
+        currentNode = currentNode.next;
       }
+      dataArr.splice(index, 0, data);
+      this.clear();
+      dataArr.forEach((value) => { this.append(value) });
       return this;
     }
 
@@ -71,14 +71,6 @@ class LinkedList {
     }
 
     clear() {
-      let currentNode = this._head;
-      let nextNode = currentNode.next
-      for (var i = 0; i < this.length; i++) {
-        currentNode.data = 0;
-        currentNode.prev = undefined;
-        currentNode.next = undefined;
-        currentNode = nextNode;
-      }
       this.length = 0;
       this._head =null;
       this._tail = null;
